@@ -1,0 +1,89 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <form id="admission" action="" method="POST">
+    {% csrf_token %}
+    <h3>Admission Details</h3>
+    <fieldset>
+      <input
+        type="text"
+        tabindex="1"
+        name="GRE"
+        required
+        autofocus
+        value={{temp.GRE}}
+      />
+    </fieldset>
+    <fieldset>
+      <input
+        type="text"
+        name="TOEFL"
+        value={{temp.TOEFL}}
+        tabindex="2"
+        required
+      />
+    </fieldset>
+    <fieldset>
+      <input
+        type="text"
+        tabindex="2"
+        name="RANKING"
+        required
+        value={{temp.RANKING}}
+      />
+    </fieldset>
+    <fieldset>
+      <input
+        type="text"
+        name="SOP"
+        value={{temp.SOP}}
+        tabindex="2"
+        required
+      />
+    </fieldset>
+    <fieldset>
+      <input
+        type="text"
+        name="LOR"
+        value={{temp.LOR}}
+        tabindex="2"
+        required
+      />
+    </fieldset>
+    <fieldset>
+      <input
+        placeholder="Your CGPA"
+        type="text"
+        name="CGPA"
+        value={{temp.CGPA}}
+        tabindex="2"
+        required
+      />
+    </fieldset>
+    <fieldset>
+      <button
+        name="submit"
+        type="submit"
+        id="contact-submit"
+        data-submit="...Sending"
+      >
+        Submit
+      </button>
+    </fieldset>
+    {% if prediction %}
+    <p style="font-size: 15px">Chance of Admit: {{prediction}}%</p>
+    {% endif %}
+  </form>
+</div>
+<script>
+  var form_fields = document.getElementsByTagName("input");
+  form_fields[1].placeholder = "Your GRE Score";
+  form_fields[2].placeholder = "Your TOEFL Score";
+  form_fields[3].placeholder = "University Ranking";
+  form_fields[4].placeholder = "SOP";
+  form_fields[5].placeholder = "LOR";
+  form_fields[6].placeholder = "Your CGPA";
+  for (var field in form_fields) {
+    form_fields[field].defaultValue = "";
+  }
+</script>
+{% endblock %}
